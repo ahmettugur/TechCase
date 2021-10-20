@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  cartdb:
+    image: redis
+
+  productdb:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+
+  cart.api:
+    image: cart_api
+    build:
+      context: .
+      dockerfile: src/TechCase.Api/Dockerfile
+volumes:
+  productdb_volume:

@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+
+  cartdb:
+    container_name: cartdb
+    restart: always
+    ports:
+      - '6379:6379'
+
+  productdb:
+    container_name: productdb
+    restart: always
+    ports:
+      - '1919:1433'
+    volumes:
+      - productdb_volume:/var/opt/mssql
+    environment:
+      SA_PASSWORD: 'Ahmet1990*'
+      ACCEPT_EULA: 'Y'
+
+  cart.api:
+    container_name: cart.api
+    restart: on-failure
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - 'RedisSettings:Host=cartdb'
+      - 'RedisSettings:Port=6379'
+      - 'ConnectionStrings:TechCaseConnection=Server=productdb,1433;Database=TechCaseDb;User Id=sa;Password=Ahmet1990*'
+    ports:
+      - '1923:80'
+    depends_on:
+      - productdb
