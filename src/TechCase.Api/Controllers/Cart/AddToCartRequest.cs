@@ -8,8 +8,8 @@ namespace TechCase.Api.Controllers
 {
     public class AddToCartRequest
     {
-        public Guid userId { get; set; }
-        public List<CartItemRequest> cartItems { get; set; }
+        public Guid UserId { get; set; }
+        public List<CartItemRequest> CartItems { get; set; }
     }
 
     public class CartItemRequest

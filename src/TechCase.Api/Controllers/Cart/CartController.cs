@@ -25,9 +25,9 @@ namespace TechCase.Api.Controllers
         {
             var command = new AddToCartCommand
             {
-                UserId = addToCartRequest.userId,
-                TotalPrice = addToCartRequest.cartItems.Sum(_ => _.Price * _.StockQuantity),
-                cartItems = addToCartRequest.cartItems.Select(_ => new AddToCartCommandCartItem
+                UserId = addToCartRequest.UserId,
+                TotalPrice = addToCartRequest.CartItems.Sum(_ => _.Price * _.StockQuantity),
+                cartItems = addToCartRequest.CartItems.Select(_ => new AddToCartCommandCartItem
                 {
                     ProductId = _.ProductId,
                     Name = _.Name,
